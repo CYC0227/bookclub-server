@@ -2,6 +2,9 @@ language: java
 jdk:
   - openjdk11
 
+addons:
+  mariadb: '10.6'
+
 branches:
   only:
     - main
@@ -16,6 +19,8 @@ cache:
     - '$HOME/.gradle'
 
 script: "./gradlew clean build"
+
+
 
 #
 #before_deploy:
