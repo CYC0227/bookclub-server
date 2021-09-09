@@ -13,6 +13,8 @@ application.properties
 application.yml
 ymlsecret.tar
 
+test
+
 ### STS ###
 .apt_generated
 .classpath
