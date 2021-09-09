@@ -13,7 +13,7 @@ application.properties
 application.yml
 ymlsecret.tar
 
-src/test
+test/**
 
 ### STS ###
 .apt_generated
