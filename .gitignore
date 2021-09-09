@@ -10,10 +10,9 @@ build/
 #### CYC ####
 #*.log
 application.properties
-application.yml
+#application.yml
 ymlsecret.tar
 
-test/**
 
 ### STS ###
 .apt_generated
