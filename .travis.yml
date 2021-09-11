@@ -21,10 +21,10 @@ before_install:
   - tar xnf ymlsecret.tar
 
 # Travis CI 서버의 Home
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.gradle'
+#cache:
+#  directories:
+#    - '$HOME/.m2/repository'
+#    - '$HOME/.gradle'
 
 script: "./gradlew clean build"
 
