@@ -6,7 +6,7 @@ services:
   - mysql
 
 addons:
-  mariadb: '10.6'
+  mariadb: '10.5.12'
 
 branches:
   only:
