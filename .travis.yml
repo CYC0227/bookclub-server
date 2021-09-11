@@ -2,6 +2,8 @@ language: java
 jdk:
   - openjdk11
 
+services:
+  - mysql
 
 addons:
   mariadb: '10.5'
