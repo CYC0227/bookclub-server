@@ -19,12 +19,13 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_f019c87eb3ed_key -iv $encrypted_f019c87eb3ed_iv
     -in ymlsecret.tar.enc -out ymlsecret.tar -d
   - tar xnf ymlsecret.tar
+  - sudo mariadb -e 'CREATE DATABASE mangpo_bookclub_test;select database();SHOW DATABASES;USE mangpo_bookclub_test;select database();'
 
 # Travis CI 서버의 Home
-#cache:
-#  directories:
-#    - '$HOME/.m2/repository'
-#    - '$HOME/.gradle'
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 script: "./gradlew clean build"
 
