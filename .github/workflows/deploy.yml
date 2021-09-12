@@ -27,12 +27,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: verify mariadb connection from host
+        run:
+          mariadb --version
+          sudo apt-get install -y mariadb-client
+          sudo service mariadb start
+          mariadb -uroot -proot -e "CREATE DATABASE mangpo"
+          mariadb -uroot -proot -e "SHOW DATABASES"
+
+
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
