@@ -29,11 +29,11 @@ jobs:
 
       - name: verify mariadb connection from host
         run:
-          mariadb --version
-          sudo apt-get install -y mariadb-client
-          sudo service mariadb start
-          mariadb -uroot -proot -e "CREATE DATABASE mangpo"
-          mariadb -uroot -proot -e "SHOW DATABASES"
+          mysql --version
+          sudo apt-get install -y mysql-client
+          sudo service mysql start
+          mysql -uroot -proot -e "CREATE DATABASE mangpo"
+          mysql -uroot -proot -e "SHOW DATABASES"
 
 
       - name: Set up JDK 11
