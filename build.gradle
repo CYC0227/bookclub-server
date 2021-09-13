@@ -7,7 +7,7 @@ plugins {
 
 jar{
 	enabled = false
-	archiveClassifier = ''
+	archiveClassifier.set("")
 }
 
 group = 'mangpo'
