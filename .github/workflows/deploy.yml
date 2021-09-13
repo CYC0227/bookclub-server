@@ -63,7 +63,6 @@ jobs:
           cp -r .ebextensions deploy/.ebextensions
           cp -r .platform deploy/.platform
           cd deploy && zip -r deploy.zip .
-          ls
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
@@ -74,4 +73,4 @@ jobs:
           environment_name: mangpo-bookclub
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
-          deployment_package: deploy.zip
+          deployment_package: deploy/deploy.zip
