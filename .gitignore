@@ -11,6 +11,7 @@ build/
 #*.log
 application.properties
 application.yml
+deploy.yml
 
 
 
