@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.h2.Driver
 
   jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
 #      generate-ddl: true
       ddl-auto: update
@@ -31,3 +31,4 @@ cloud:
       auto: false
     credentials:
       instanceProfile: true
+
