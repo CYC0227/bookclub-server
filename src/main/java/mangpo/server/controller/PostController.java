@@ -30,7 +30,7 @@ public class PostController {
 
     //Todo dto로 직접 조회 고려
     @GetMapping
-    public Result<List<PostResponseDto>> getPostsByBookId(@RequestParam Long bookId){
+    public Result<List<PostResponseDto>> getPostsByBookId(@RequestParam Long bookId) {
         List<Post> posts = postService.findPostsByBookId(bookId);
 
         List<PostResponseDto> collect = posts.stream()
@@ -41,12 +41,12 @@ public class PostController {
     }
 
     @GetMapping
-    public Result<List<PostResponseDto>> getPostsByBookIdAndClubScope(@RequestParam Long bookId, @RequestParam Long clubId){
+    public Result<List<PostResponseDto>> getPostsByBookIdAndClubScope(@RequestParam Long bookId, @RequestParam Long clubId) {
         List<Post> posts = postService.findPostsByBookId(bookId);
         Club clubRequest = clubService.findClub(clubId);
 
         for (Post post : posts) {
-            if (post.getScope() == PostScope.CLUB){
+            if (post.getScope() == PostScope.CLUB) {
                 List<PostClubScope> listByPost = pscService.findListByPost(post);
 
                 boolean present = listByPost.stream()
@@ -65,29 +65,14 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto requestDto, UriComponentsBuilder b){
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto requestDto, UriComponentsBuilder b) {
         Book requestBook = bookService.findBook(requestDto.getBookId());
         Post post = requestDto.toEntityExceptBook();
         post.changeBook(requestBook);
         Long postId = postService.createPost(post);
 
-        if (requestDto.getScope() == PostScope.CLUB){
-            List<Long> clubIdListForScope = requestDto.getClubIdListForScope();
-
-            for (Long clubId : clubIdListForScope) {
-                Club club = clubService.findClub(clubId);
-
-                PostClubScope pcs = PostClubScope.builder()
-                        .post(post)
-                        .club(club)
-                        .clubName(club.getName())
-                        .build();
-
-                Long pcsId = pscService.createPCS(pcs);
-            }
-
-
-        }
+        if (requestDto.getScope() == PostScope.CLUB)
+            createAndPersistPostClubScope(requestDto, post);
 
         UriComponents uriComponents =
                 b.path("/posts/{postId}").buildAndExpand(postId);
@@ -97,8 +82,27 @@ public class PostController {
         return ResponseEntity.created(uriComponents.toUri()).body(postResponseDto);
     }
 
+    private void createAndPersistPostClubScope(PostRequestDto requestDto, Post post) {
+
+        List<Long> clubIdListForScope = requestDto.getClubIdListForScope();
+
+        for (Long clubId : clubIdListForScope) {
+            Club club = clubService.findClub(clubId);
+
+            PostClubScope pcs = PostClubScope.builder()
+                    .post(post)
+                    .club(club)
+                    .clubName(club.getName())
+                    .build();
+
+            Long pcsId = pscService.createPCS(pcs);
+        }
+
+
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable Long id){
+    public ResponseEntity<?> deletePost(@PathVariable Long id) {
         Post post = postService.findPost(id);
         pscService.deleteAllPcsByPost(post);
         postService.deletePost(id);
@@ -107,15 +111,27 @@ public class PostController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+    public ResponseEntity<?> updatePost(@PathVariable Long id,@RequestParam Long clubId, @RequestBody PostRequestDto requestDto) {
+        Post post = postService.findPost(id);
+        PostScope ogScope = post.getScope();
+
+
+        if (ogScope == PostScope.CLUB) {
+            Club club = clubService.findClub(clubId);
+            pscService.deleteAllPcsByClub(club);
+        }
+        if (requestDto.getScope() == PostScope.CLUB)
+            createAndPersistPostClubScope(requestDto,post);
+
+
         Post requestEntity = requestDto.toEntityExceptBook();
-        postService.updatePost(id,requestEntity);
+        postService.updatePost(id, requestEntity);
 
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{postId}/do-like")
-    public ResponseEntity<?> doLikePost(@PathVariable Long postId, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser){
+    public ResponseEntity<?> doLikePost(@PathVariable Long postId, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser) {
         Post post = postService.findPost(postId);
 
         Liked liked = Liked.builder()
@@ -129,7 +145,7 @@ public class PostController {
     }
 
     @PostMapping("/{postId}/undo-like")
-    public ResponseEntity<?> undoLikeBook(@PathVariable Long postId, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser){
+    public ResponseEntity<?> undoLikeBook(@PathVariable Long postId, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser) {
         Post post = postService.findPost(postId);
 
         List<Liked> collect = post.getLikedList().stream()
@@ -146,7 +162,7 @@ public class PostController {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    static class Result<T>{
+    static class Result<T> {
         private T data;
     }
 
@@ -167,8 +183,8 @@ public class PostController {
         private List<LikedResponseDto> likedList;
         private List<CommentResponseDto> commentsDto;
 
-//        @QueryProjection
-        public PostResponseDto(Post post){
+        //        @QueryProjection
+        public PostResponseDto(Post post) {
             this.id = post.getId();
             this.type = post.getType();
             this.scope = post.getScope();
@@ -181,7 +197,7 @@ public class PostController {
 
             this.likedList = post.getLikedList()
                     .stream()
-                    .map(m-> new LikedResponseDto(m.getUser().getNickname(),m.getIsLiked()))
+                    .map(m -> new LikedResponseDto(m.getUser().getNickname(), m.getIsLiked()))
                     .collect(Collectors.toList());
 
             this.commentsDto = post.getComments()
@@ -211,7 +227,7 @@ public class PostController {
         private String content;
         private List<Long> clubIdListForScope;
 
-        public Post toEntityExceptBook(){
+        public Post toEntityExceptBook() {
             return Post.builder()
                     .type(this.type)
                     .scope(this.scope)
@@ -232,7 +248,7 @@ public class PostController {
         private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;
 
-        public CommentResponseDto(Comment comment){
+        public CommentResponseDto(Comment comment) {
             this.commentId = comment.getId();
             this.parentCommentId = comment.getParentCommentId();
             this.userNickname = comment.getUser().getNickname();
