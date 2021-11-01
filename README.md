@@ -18,6 +18,7 @@
 
 * Java8, Spring Boot, Gradle
 * JPA(Spring Data, Hibernate), QueryDSL
+* JUnit5, AssertJ
 * MariaDB, H2
 * GitHub Actions
 * AWS (Elastic Beanstalk)
