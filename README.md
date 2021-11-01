@@ -25,7 +25,7 @@
 ### UI
 
 * 아직 개발/프로토타입 단계입니다.
-* UI 일부 Figma에서 발췌
+* UI 2/3 가량 Figma에서 발췌
 
 <p align="center">
   <div align="center"><img src="https://raw.githubusercontent.com/CYC0227/mangpo-ERD/main/example.png" width="100%"/></div>
