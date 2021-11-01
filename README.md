@@ -7,6 +7,13 @@
 <p align="center">아직 개발 진행중입니다!</p>
 <br>
 
+### 서버 구조도
+<p align="center">
+  <div align="center"><img src="https://raw.githubusercontent.com/CYC0227/mangpo-ERD/main/archi.png" width="100%"/></div>
+  <br>  
+</p>
+
+
 ### 사용 기술, 개발 환경
 
 * Java8, Spring Boot, Gradle
