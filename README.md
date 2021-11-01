@@ -18,6 +18,6 @@
 
 ### ERD
 <p align="center">
-  <div align="center"><img src="https://raw.githubusercontent.com/CYC0227/mangpo-ERD/main/mangpoERD.png" width="60%"/></div>
+  <div align="center"><img src="https://raw.githubusercontent.com/CYC0227/mangpo-ERD/main/mangpoERD.png" width="100%"/></div>
   <br>  
 </p>
