@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">"생각을 이어나가는 독서"<br> 독서/북클럽 어플 OurPage의 서버입니다</p>
-
+<p align="center">아직 개발 진행중입니다!</p>
 <br>
 
 ### 사용 기술, 개발 환경
