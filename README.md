@@ -46,6 +46,6 @@
 * 린캔버스: https://coconut-cheese-fcb.notion.site/e1eb8b3f053a40008a9cc7160a26095d
 * 2021년 정부지원 창업 동아리 선정 당시 사진
 <p align="center">
-  <div align="center"><img src="https://github.com/CYC0227/mangpo-ERD/blob/main/KakaoTalk_20211020_172331193.png?raw=true" width="100%"/></div>
+  <div align="center"><img src="https://github.com/CYC0227/mangpo-ERD/blob/main/KakaoTalk_20211020_172331193.png?raw=true" width="70%"/></div>
   <br>  
 </p>
