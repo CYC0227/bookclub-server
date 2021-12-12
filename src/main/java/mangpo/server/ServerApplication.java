@@ -10,9 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class ServerApplication {
 
 	public static final String APPLICATION_LOCATIONS = "spring.config.location="
-			+ "classpath:application.yml,"
-			+ "classpath:application-local.yml,"
-			+ "classpath:application-prod.yml,"
+
+//			+ "classpath:application.yml,"
+//			+ "classpath:application-local.yml,"
+//			+ "classpath:application-prod.yml,"
 
 			+ "classpath:aws.yml";
 
