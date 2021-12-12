@@ -13,9 +13,9 @@ public class ServerApplication {
 
 //			+ "classpath:application.yml,"
 //			+ "classpath:application-local.yml,"
-//			+ "classpath:application-prod.yml,"
 
-			+ "classpath:aws.yml";
+			+ "classpath:application-prod.yml";
+
 
 	public static void main(String[] args){
 		new SpringApplicationBuilder(ServerApplication.class)
