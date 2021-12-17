@@ -16,7 +16,7 @@
 
 ### 사용 기술, 개발 환경
 
-* Java8, Spring Boot, Gradle
+* Java, Spring Boot, Gradle
 * JPA(Spring Data, Hibernate), QueryDSL
 * JUnit5, AssertJ
 * MariaDB, H2
@@ -32,7 +32,6 @@
 
 ### UI
 
-* 아직 개발/프로토타입 단계입니다.
 * UI 2/3 가량 Figma에서 발췌
 
 <p align="center">
