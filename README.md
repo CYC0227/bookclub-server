@@ -8,7 +8,7 @@
 <p align="center">배타 서비스 중입니다!</p>
 <br>
 
-
+### 홈페이지: https://litt.ly/ourpage
 ### 인스타그램: https://www.instagram.com/ourpage_app/
 ### 다운로드 AOS: https://play.google.com/store/apps/details?id=com.mangpo.bookclub
 ### 다운로드 IOS: 예정 
