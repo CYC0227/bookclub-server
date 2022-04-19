@@ -13,6 +13,7 @@ import mangpo.server.service.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,6 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BookService {
-
     private final BookRepository bookRepository;
 
     private final ClubBookUserService cbuService;
