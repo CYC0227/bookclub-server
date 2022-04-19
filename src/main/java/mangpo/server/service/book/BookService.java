@@ -105,13 +105,13 @@ public class BookService {
         return bookRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("존재하지 않는 책입니다."));
     }
 
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
-    }
-
-    public List<Book> findByCategory(BookCategory bookCategory) {
-        return bookRepository.findByBookCategory(bookCategory);
-    }
+//    public List<Book> findAllBooks() {
+//        return bookRepository.findAll();
+//    }
+//
+//    public List<Book> findByCategory(BookCategory bookCategory) {
+//        return bookRepository.findByBookCategory(bookCategory);
+//    }
 
     public Set<Book> findBooksByCurrentUserAndBookCategory(BookCategory category) {
         User user = userService.findUserFromToken();
